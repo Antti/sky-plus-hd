@@ -3,12 +3,13 @@ var util = require('util');
 var SkyPlusHD = require('../..');
 
 
+console.log("Trying to find skybox on ip: " + process.argv[2]);
 var skyFinder = new SkyPlusHD().find();
 
 skyFinder.then(function(skyBox) {
    console.log("READY: "+skyBox.description);
 
-   celeri.open({  
+   celeri.open({
        prefix: 'sky-plus-hd > '
    });
 
@@ -61,7 +62,7 @@ skyFinder.then(function(skyBox) {
       var spinner = celeri.loading("Getting channels list");
       skyBox.getChannelList().then(function(channelList) {
          channelList.reverse();
-         
+
          spinner.done();
          celeri.drawTable(channelList,{
             columns: ['number','name','id','idHex']
